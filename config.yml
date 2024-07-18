@@ -58,3 +58,24 @@ bots:
       order: "move_fish"
     instances:
       manager_1: { }
+
+  pocket-cep:
+    image: "pocket-cep"
+    lifecycle:
+      type: unmanaged
+    instances:
+      pocket-cep: { }
+
+  cep-gateway:
+    image: "botica-bot-cep-gateway"
+    mount:
+      - source: "./resources/cep-gateway.json"
+        target: "/app/cep-gateway.json"
+    lifecycle:
+      type: reactive
+      keys: [ "java_fish_movement", "node_fish_movement" ]
+      order: "move_fish"
+    instances:
+      cep-gateway:
+        environment:
+          - CEP_GATEWAY_CONFIG_PATH=/app/cep-gateway.json

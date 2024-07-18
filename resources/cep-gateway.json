@@ -1,0 +1,85 @@
+{
+  "streams": [
+    {
+      "streamID": "FishOut",
+      "jsonSchema": {
+        "$schema": "https://json-schema.org/draft-07/schema#",
+        "$id": "https://example.com/product.schema.json",
+        "title": "FishOut",
+        "description": "Messages outgoing from the botica environment.",
+        "type": "object",
+        "properties": {
+          "silhouette": {
+            "type": "string"
+          },
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "silhouette",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false
+      }
+    },
+    {
+      "streamID": "FishIn",
+      "jsonSchema": {
+        "$schema": "https://json-schema.org/draft-07/schema#",
+        "$id": "https://example.com/product.schema.json",
+        "title": "FishIn",
+        "description": "Messages incoming to the botica environment.",
+        "type": "object",
+        "properties": {
+          "silhouette": {
+            "type": "string"
+          },
+          "x": {
+            "type": "integer"
+          },
+          "y": {
+            "type": "integer"
+          }
+        },
+        "required": [
+          "silhouette",
+          "x",
+          "y"
+        ],
+        "additionalProperties": false
+      }
+    }
+  ],
+  "patterns": [
+    {
+      "patternName": "Echo",
+      "inputStreamNames": [
+        "FishOut"
+      ],
+      "outputStreamName": "FishIn",
+      "patternCode": "from every out = FishOut select out.silhouette as silhouette, out.x as x, out.y as y"
+    }
+  ],
+  "publications": [
+    {
+      "orders": [
+        "move_fish"
+      ],
+      "stream": "FishOut"
+    }
+  ],
+  "subscriptions": [
+    {
+      "streams": [
+        "FishIn"
+      ],
+      "key": "cep_in",
+      "order": "read_cep_message"
+    }
+  ]
+}
