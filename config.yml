@@ -7,13 +7,13 @@ broker:
 bots:
   fish-java:
     image: "botica-bot-fishbowl-fish-java"
-    lifecycle:
-      type: proactive
-      initialDelay: 5
-      period: 5
     publish:
       key: "java_fish_movement"
       order: "move_fish"
+    lifecycle:
+      type: proactive
+      initialDelay: 1
+      period: 1
     instances:
       fish_1:
         environment:
@@ -21,10 +21,10 @@ bots:
           - FISH_POSITION_X=0
           - FISH_POSITION_Y=0
       fish_2:
-        lifecycle:
+        lifecycle: # overriding the lifecycle configuration
           type: proactive
-          initialDelay: 5
-          period: 10
+          initialDelay: 1
+          period: 2
         environment:
           - FISH_SILHOUETTE=2
           - FISH_POSITION_X=5
@@ -32,13 +32,13 @@ bots:
 
   fish-node:
     image: "botica-bot-fishbowl-fish-node"
-    lifecycle:
-      type: proactive
-      initialDelay: 5
-      period: 5
     publish:
       key: "node_fish_movement"
       order: "move_fish"
+    lifecycle:
+      type: proactive
+      initialDelay: 1
+      period: 5
     instances:
       fish_3:
         environment:
