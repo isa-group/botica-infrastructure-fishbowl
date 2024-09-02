@@ -52,9 +52,13 @@ bots:
       - source: "./fishbowl"
         target: "/app/fishbowl"
         createHostPath: true
+    subscribe:
+      - key: "java_fish_movement"
+        strategy: broadcast
+      - key: "node_fish_movement"
+        strategy: broadcast
     lifecycle:
       type: reactive
-      keys: [ "java_fish_movement", "node_fish_movement" ]
       order: "move_fish"
     instances:
       manager_1: { }
