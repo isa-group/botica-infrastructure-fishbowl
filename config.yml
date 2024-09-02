@@ -61,4 +61,6 @@ bots:
       type: reactive
       order: "move_fish"
     instances:
-      manager_1: { }
+      manager_1:
+        environment:
+          - FISHBOWL_FILE_UPDATE_SECONDS=5
