@@ -1,15 +1,6 @@
-broker:
-  type: rabbitmq
-  username: "username"
-  password: "password"
-  port: 5672
-
 bots:
   fish-java:
     image: "botica-bot-fishbowl-fish-java"
-    publish:
-      key: "java_fish_movement"
-      order: "move_fish"
     lifecycle:
       type: proactive
       initialDelay: 1
@@ -32,9 +23,6 @@ bots:
 
   fish-node:
     image: "botica-bot-fishbowl-fish-node"
-    publish:
-      key: "node_fish_movement"
-      order: "move_fish"
     lifecycle:
       type: proactive
       initialDelay: 1
@@ -48,19 +36,16 @@ bots:
 
   manager:
     image: "botica-bot-fishbowl-manager"
+    replicas: 1
     mount:
       - source: "./fishbowl"
         target: "/app/fishbowl"
         createHostPath: true
     subscribe:
-      - key: "java_fish_movement"
-        strategy: broadcast
-      - key: "node_fish_movement"
+      - key: "fishbowl_manager"
         strategy: broadcast
     lifecycle:
       type: reactive
       order: "move_fish"
-    instances:
-      manager_1:
-        environment:
-          - FISHBOWL_FILE_UPDATE_SECONDS=5
+    environment:
+      - FISHBOWL_FILE_UPDATE_SECONDS=5
