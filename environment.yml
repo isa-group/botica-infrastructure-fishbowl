@@ -1,6 +1,6 @@
 bots:
   fish-java:
-    image: "botica-bot-fishbowl-fish-java"
+    image: "botica-bot-fishbowl-fish-java:latest"
     lifecycle:
       type: proactive
       initialDelay: 1
@@ -22,7 +22,7 @@ bots:
           - FISH_POSITION_Y=5
 
   fish-node:
-    image: "botica-bot-fishbowl-fish-node"
+    image: "botica-bot-fishbowl-fish-node:latest"
     lifecycle:
       type: proactive
       initialDelay: 1
@@ -35,7 +35,7 @@ bots:
           - FISH_POSITION_Y=0
 
   manager:
-    image: "botica-bot-fishbowl-manager"
+    image: "botica-bot-fishbowl-manager:latest"
     replicas: 1
     mount:
       - source: "./fishbowl"
@@ -43,9 +43,6 @@ bots:
         createHostPath: true
     subscribe:
       - key: "fishbowl_manager"
-        strategy: broadcast
-    lifecycle:
-      type: reactive
-      order: "move_fish"
+        strategy: broadcast # All replicas will receive orders with 'fishbowl_manager' keys
     environment:
       - FISHBOWL_FILE_UPDATE_SECONDS=5

@@ -40,7 +40,7 @@ The behavior and interaction of the bots within this infrastructure are defined 
 file located in this repository. This configuration file sets up the bot types, instances, and their
 interactions.
 
-- **View the configuration**: [config.yml](./config.yml)
+- **View the configuration**: [environment.yml](environment.yml)
 
 ## Source code
 
