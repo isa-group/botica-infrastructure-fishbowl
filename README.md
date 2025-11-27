@@ -17,11 +17,11 @@ grid. This project includes three fish bots: two are implemented in Java, and on
 Node.js, although both of the implementation behave identically.
 
 The **manager** is a reactive bot, written in Java, that listens for updates from the fish bots. It
-subscribes to the fish movement keys and the `move_fish` order. Whenever a fish bot publishes its
-new position, the manager reads this update, renders the current state of the fishbowl in the logs,
-and periodically saves the fishbowl's state to a file in the `fishbowl/` directory. This process
-continues, with the manager creating a new file every few seconds, such as `v1.txt`, `v2.txt`, and
-so on.
+subscribes to the fish movement keys and the `register_movement` order. Whenever a fish bot
+publishes its new position, the manager reads this update, renders the current state of the fishbowl
+in the logs, and periodically saves the fishbowl's state to a file in the `fishbowl/` directory.
+This process continues, with the manager creating a new file every few seconds, such as `v1.txt`,
+`v2.txt`, and so on.
 
 This example project illustrates several important features of Botica:
 
@@ -36,9 +36,9 @@ This example project illustrates several important features of Botica:
 
 ## Configuration
 
-The behavior and interaction of the bots within this infrastructure are defined in the `config.yml`
-file located in this repository. This configuration file sets up the bot types, instances, and their
-interactions.
+The behavior and interaction of the bots within this infrastructure are defined in the
+`environment.yml`file located in this repository. This configuration file sets up the bot types,
+instances, and their interactions.
 
 - **View the configuration**: [environment.yml](environment.yml)
 
@@ -60,7 +60,7 @@ To get started with this example project:
 1. **Clone the repository**: clone this repository to your local machine.
 2. **Run the infrastructure**: use the provided script in this repository to download the latest
    version of the Botica Director and start the environment based on the configuration
-   in `config.yml`.
+   in `environment.yml`.
 3. **Monitor the output**: watch the logs to see the fishbowl being rendered as the fish bots send
    their position updates. The saved fishbowl states can be found in the `fishbowl/` directory.
 
