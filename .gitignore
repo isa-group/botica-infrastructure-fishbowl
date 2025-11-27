@@ -10,8 +10,6 @@
 
 # Botica Director Files
 .botica/
-.botica-director-version
-botica-director.jar
 
 # Manager files
 fishbowl/
