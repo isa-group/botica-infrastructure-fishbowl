@@ -11,5 +11,9 @@
 # Botica Director Files
 .botica/
 
-# Manager files
-fishbowl/
+# Generated Files
+target/
+node_modules/
+
+# Output files
+renders/
